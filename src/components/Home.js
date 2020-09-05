@@ -40,7 +40,7 @@ const Home = () => {
         const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
 
         fetchMovies(endpoint);
-        
+
     };
     
     if (error) return <div>Something went wrong ...</div>;
@@ -78,7 +78,9 @@ const Home = () => {
         </Grid> 
         {/* if loading then spinner, if false, no spinner */}
         {loading && <Spinner />}
-        <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+        {currentPage < totalPages && !loading && (
+            <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+        )}
         </>
     )
 };
